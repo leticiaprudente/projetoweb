@@ -1,7 +1,9 @@
-drop database lab4_atividade2;
-create database lab4_atividade2;
+create schema lab4_atividade4;
+use lab4_atividade4;
 
-use lab4_atividade2;
+create user 'user'@'localhost' identified by '12345';
+
+grant select, insert, delete, update on lab4_atividade4.* to user@'localhost';
 
 CREATE TABLE cli_cliente(
 	cli_id BIGINT NOT NULL AUTO_INCREMENT,
