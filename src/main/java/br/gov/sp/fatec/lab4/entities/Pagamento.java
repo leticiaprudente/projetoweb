@@ -1,0 +1,20 @@
+package br.gov.sp.fatec.lab4.entities;
+
+import lombok.Data;
+
+import javax.persistence.*;
+
+//herança, indica que utiliza mais de uma tabela no banco, uma para cada classe filha
+@Inheritance(strategy = InheritanceType.JOINED)
+@Entity
+@Table(name = "pag_pagamento")
+@Data
+@AttributeOverride(name = "id", column = @Column(name = "pag_id"))
+public abstract class Pagamento extends Identificador {
+
+    protected Double valor;
+
+    @ManyToOne
+    @JoinColumn(name = "ped_id")
+    protected Pedido pedido;
+}
