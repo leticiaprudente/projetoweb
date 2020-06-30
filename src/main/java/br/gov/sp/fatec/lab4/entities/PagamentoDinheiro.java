@@ -1,13 +1,13 @@
 package br.gov.sp.fatec.lab4.entities;
 
-import lombok.Data;
+//import lombok.Data;
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-@Data
+//@Data
 @Entity
 @Table(name="pag_pagamento_dinheiro")
 public class PagamentoDinheiro extends Pagamento {
@@ -16,5 +16,13 @@ public class PagamentoDinheiro extends Pagamento {
 
     public Double getValor(){
         return this.valor - (this.valor * (desconto/100));
+    }
+
+    public Double getDesconto() {
+        return desconto;
+    }
+
+    public void setDesconto(Double desconto) {
+        this.desconto = desconto;
     }
 }

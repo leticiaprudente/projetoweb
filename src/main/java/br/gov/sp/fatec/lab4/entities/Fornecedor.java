@@ -1,16 +1,18 @@
 package br.gov.sp.fatec.lab4.entities;
 
-import lombok.Data;
-
-import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+
+import javax.persistence.AttributeOverride;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
 
 @Entity
 @Table(name = "for_fornecedor")
-@Data
 @AttributeOverride(name = "id", column = @Column(name = "for_id"))
 public class Fornecedor extends Identificador {
 
@@ -19,4 +21,28 @@ public class Fornecedor extends Identificador {
 
     @OneToMany(mappedBy = "fornecedor", fetch = FetchType.EAGER)
     private List<Item> items = new ArrayList<>();
+
+    public String getCnpj() {
+        return cnpj;
+    }
+
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public List<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(List<Item> items) {
+        this.items = items;
+    }
 }

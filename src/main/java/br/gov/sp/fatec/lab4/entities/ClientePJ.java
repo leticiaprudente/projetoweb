@@ -1,15 +1,25 @@
 package br.gov.sp.fatec.lab4.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
+//import lombok.AllArgsConstructor;
+//import lombok.Data;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
-@Data
+//@Data
 @Entity
 @DiscriminatorValue(value = "pj")
 public class ClientePJ extends Cliente {
 
     private String cnpj;
+
+    public String getCnpj() {
+        return cnpj;
+    }
+
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
+    }
 }
+
+

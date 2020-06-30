@@ -1,6 +1,6 @@
 package br.gov.sp.fatec.lab4.entities;
 
-import lombok.Data;
+//import lombok.Data;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -8,7 +8,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "ped_pedido")
-@Data
+//@Data
 @AttributeOverride(name = "id", column = @Column(name = "ped_id"))
 public class Pedido extends Identificador{
 
@@ -24,7 +24,31 @@ public class Pedido extends Identificador{
                     { @JoinColumn(name = "ped_id")},
     inverseJoinColumns = { @JoinColumn(name = "ite_id")})
     private List<Item> items = new ArrayList<>();
-    //um pedido pode ter vários pagamentos (mais de 1 cartão/dinheiro)
+    //um pedido pode ter vï¿½rios pagamentos (mais de 1 cartï¿½o/dinheiro)
     @OneToMany(mappedBy = "pedido", fetch = FetchType.EAGER)
     private List<Pagamento> pagamentos = new ArrayList<>();
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public List<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(List<Item> items) {
+        this.items = items;
+    }
+
+    public List<Pagamento> getPagamentos() {
+        return pagamentos;
+    }
+
+    public void setPagamentos(List<Pagamento> pagamentos) {
+        this.pagamentos = pagamentos;
+    }
 }

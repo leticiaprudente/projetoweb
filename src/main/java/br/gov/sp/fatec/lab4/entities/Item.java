@@ -1,22 +1,44 @@
 package br.gov.sp.fatec.lab4.entities;
 
-import lombok.Data;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "ite_item")
-@Data
 @AttributeOverride(name = "id", column = @Column(name = "ite_id"))
 public class Item extends Identificador{
 
     private String nome;
     private Double preco;
     
-    //vários fornecedores podem ter o mesmo item
-    //o item só tem 1 fornecedor
+    //vï¿½rios fornecedores podem ter o mesmo item
+    //o item sï¿½ tem 1 fornecedor
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "for_id")
     private Fornecedor fornecedor;
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public Double getPreco() {
+        return preco;
+    }
+
+    public void setPreco(Double preco) {
+        this.preco = preco;
+    }
+
+    public Fornecedor getFornecedor() {
+        return fornecedor;
+    }
+
+    public void setFornecedor(Fornecedor fornecedor) {
+        this.fornecedor = fornecedor;
+    }
 
 }

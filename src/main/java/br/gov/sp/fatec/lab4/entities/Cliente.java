@@ -1,22 +1,18 @@
 package br.gov.sp.fatec.lab4.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-//herança, indica que só utiliza uma tabela no banco, mesmo para as classes filhas
+//heranï¿½a, indica que sï¿½ utiliza uma tabela no banco, mesmo para as classes filhas
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-//diferencia o tipo de dado que será inserido na tabela (pf - pessoa física ou pj - pessoa jurídica)
+//diferencia o tipo de dado que serï¿½ inserido na tabela (pf - pessoa fï¿½sica ou pj - pessoa jurï¿½dica)
 @DiscriminatorColumn
-//indica que é uma entidade
+//indica que ï¿½ uma entidade
 @Entity
-//indica o nome da tabela no banco, que é diferente do nome da Classe
+//indica o nome da tabela no banco, que ï¿½ diferente do nome da Classe
 @Table(name = "cli_cliente")
-//anotação do lombok , preenche os getters, setters e construtores
-@Data
+//anotaï¿½ï¿½o do lombok , preenche os getters, setters e construtores
 //'sobrescreve o nome do atributo'
 @AttributeOverride(name = "id", column = @Column(name = "cli_id"))
 public abstract class Cliente extends Identificador {
@@ -28,4 +24,28 @@ public abstract class Cliente extends Identificador {
     @OneToMany(mappedBy = "cliente", fetch = FetchType.EAGER)
     //lista de pedidos
     protected List<Pedido> pedidos = new ArrayList<>();
+
+	public String getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
+	}
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public List<Pedido> getPedidos() {
+        return pedidos;
+    }
+
+    public void setPedidos(List<Pedido> pedidos) {
+        this.pedidos = pedidos;
+    }
 }
